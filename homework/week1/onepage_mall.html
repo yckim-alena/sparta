@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W1 HW Onepage Mall</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0 auto;
+            width: 1000px;
+        }
+
+        .mall-top-img {
+            /* text-align: center; */
+            /* display:flex  */
+        }
+
+        .item-img {
+            /* max-width: 100%; */
+            /* text-align: center; */
+            height: 350px;
+            width: 350px;
+            margin-top: 10px;
+            margin-left: 325px;
+            margin-right: auto;
+            object-fit: cover;
+
+        }
+
+        .item-description {
+            margin-left: 20px;
+        }
+
+        .inline {
+            display: inline-block;
+        }
+        .centered {
+            margin-left: 400px;
+        }
+        .button-sized{
+            width:200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="mall-top-img">
+            <img class="item-img" src="https://pbs.twimg.com/profile_images/1122584786164486144/TFW0stBE_400x400.jpg">
+        </div>
+        <div class="item-description">
+            <div>
+                <h1 class="inline"><b>불타는 향로 팜</b></h1>
+                <h4 class="inline">&nbsp; 가격: 2200G / 개</h4>
+                <p>불타는 향로로 말씀드릴 것 같으면 한때 '대향로 시대'를 열만큼 시대를 풍미한 위대한 유틸 서폿템이다. 원딜이 향로의 고유 지속 효고를 받으면 어쩌구 저쩌구 효과도 있는데 옛날엔
+                    피흡도 있었다. 2017년 롤드컵때는 63경기동안 59경기에 등장할 정도였따. 지금은 그때에 비할 수는 없으나 여전히 유틸 서폿이 가기에 가성비갓갓템이란 건 부정할 수...
+                </p>
+            </div>
+            <div>
+                <h1><b>주문하기</b></h1>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                            주문자
+                        </div>
+                        <div class="col-sm">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="exampleFormControlSelect1">수량</label>
+                        </div>
+                        <div class="col-sm">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>1개</option>
+                                <option>2개</option>
+                                <option>3개</option>
+                                <option>4개</option>
+                                <option>5개</option>
+                              </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            주소
+                        </div>
+                        <div class="col-sm">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <a class="btn btn-primary btn-lg centered button-sized" href="#" role="button">주문하기</a>
+
+
+    </div>
+
+</body>
+
+</html>
