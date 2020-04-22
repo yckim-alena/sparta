@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>아이돌 월드컵</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel = "stylesheet" type = "text/css" href = "../static/css/style.css" />
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+  > </script>
+  
+  <script>
+    $(document).ready(function() {
+      get_idol_list()
+      
+      });
+    
+    function get_idol_list() { 
+      $.ajax({
+          type: "GET",
+          url: "/show?gen=2",
+          data: {},
+          success: function(response) {
+          console.log('Successfully selected generation');
+          // 16강 할 'artist', 'img_url' data 전달. list 형식
+          let idol_show = response['candidate_data']
+          $("#competition-body").html("");
+          for (let i=0; i<idol_show.length/2; i++){
+            let first_show = idol_show[i*2];
+            let second_show = idol_show[i*2+1];
+            
+            make_competition(first_show, second_show, i, 16);
+            let nth = "row_" + i;
+            // console.log(nth)
+            $("#"+nth).hide();
+          }
+          $("#row_0").show();   
+          alert('16강전 시작!')
+        } 
+      }) 
+      }
+
+    let can_8 = [];
+    function select_star_16(thisid){
+      if (can_8.length < 8){
+        nth = thisid.parents('tr')[1]['id']; //몇번째 줄인지
+        // nth_n = thisid.parents('div')[0]['id'];
+        // console.log('nth row n?');
+        // console.log(nth_n);
+        console.log('nth row?');
+        console.log(nth);
+        console.log('what is thisis?');
+        console.log(thisid);
+        selected_artist = thisid.attr('id'); //선택된 아티스트
+        selected = {'artist':selected_artist};
+        // selected = {'artist':selected_artist, 'nth':nth, 'nth_selected':nth_n};
+        can_8.push(selected)
+        $("#"+nth).hide();
+        nthp1 = nth.split('_')[0] + '_' + (Number(nth.split('_')[1])+1).toString()
+        console.log('nth + 1 row?')
+        console.log(nthp1)
+        if (nthp1 != 'row_8' ){
+          $("#"+nthp1).show();
+        } else {
+          start_8()
+          } 
+        } 
+    }
+
+    function start_8(){
+      $.ajax({
+          type: "POST",
+          url: "/show",
+          data: {candidate:can_8},
+          success: function(response) {
+            let data = response['data']
+            $("#competition-body").html("");
+            for (let i=0; i<idol_show.length/2; i++){
+              let first_show = idol_show[i*2];
+              let second_show = idol_show[i*2+1];
+            
+              make_competition(first_show, second_show, i);
+              let nth = "row_" + i;
+              // console.log(nth)
+              $("#"+nth).hide();
+            }
+            $("#row_0").show();   
+            alert('8강전 시작!');
+          } 
+        }) 
+      }
+      let can_4 = [];
+      function select_star_8(thisid){
+      if (can_4.length < 4){
+      nth = thisid.parents('tr')[1]['id']; //몇번째 줄인지
+      // nth_n = thisid.parents('div')[0]['id'];
+      // console.log('nth row n?');
+      // console.log(nth_n);
+      console.log('nth row?');
+      console.log(nth);
+      console.log('what is thisis?');
+      console.log(thisid);
+      selected_artist = thisid.attr('id'); //선택된 아티스트
+      selected = {'artist':selected_artist};
+      // selected = {'artist':selected_artist, 'nth':nth, 'nth_selected':nth_n};
+      can_4.push(selected)
+      $("#"+nth).hide();
+      nthp1 = nth.split('_')[0] + '_' + (Number(nth.split('_')[1])+1).toString()
+      console.log('nth + 1 row?')
+      console.log(nthp1)
+      $("#"+nthp1).show();
+      } else {
+          start_2()
+      }
+    }
+    function start_4(){
+        can_4_save = can_4;
+        can_4 = [];
+        $.ajax({
+            type: "POST",
+            url: "/show",
+            data: {'can_8':can_4_save},
+            success: function(response) {
+              let data = response['data']
+              $("#competition-body").html("");
+              for (let i=0; i<idol_show.length/2; i++){
+                let first_show = idol_show[i*2];
+                let second_show = idol_show[i*2+1];
+              
+                make_competition(first_show, second_show, i);
+                let nth = "row_" + i;
+                // console.log(nth)
+                $("#"+nth).hide();
+              }
+              $("#row_0").show();   
+              alert('준결승 시작!');
+            } 
+          }) 
+        }
+      let can_2 = [];
+      function select_star_4(thisid){
+      if (can_2.length < 2){
+      nth = thisid.parents('tr')[1]['id']; //몇번째 줄인지
+      // nth_n = thisid.parents('div')[0]['id'];
+      // console.log('nth row n?');
+      // console.log(nth_n);
+      console.log('nth row?');
+      console.log(nth);
+      console.log('what is thisis?');
+      console.log(thisid);
+      selected_artist = thisid.attr('id'); //선택된 아티스트
+      selected = {'artist':selected_artist};
+      // selected = {'artist':selected_artist, 'nth':nth, 'nth_selected':nth_n};
+      can_2.push(selected)
+      $("#"+nth).hide();
+      nthp1 = nth.split('_')[0] + '_' + (Number(nth.split('_')[1])+1).toString()
+      console.log('nth + 1 row?')
+      console.log(nthp1)
+      $("#"+nthp1).show();
+      } else {
+          start_2()
+      }
+    }
+
+    function make_competition(first_show, second_show, i, round_name) {
+      let first_name = "'" + first_show['artist'] + "'"
+      let first_url = "'" + first_show['img_url'] + "'"
+      let second_name = "'" + second_show['artist'] + "'"
+      let second_url = "'" + second_show['img_url'] + "'"
+      let nth = "'" + 'row_' + i + "'"
+      //  let nth_1 = "'" + 'row_' + i + "_1'"
+      //  let nth_2 = "'" + 'row_' + i + "_2'"
+      let temp_html = 
+                '<tr id=' + nth + '>'+
+                  '<th>'+
+                    '<table class="show-table" style="text-align:center;">'+
+                      '<tr>'+
+                      '<td>'+
+                      '<div class="gen-box">'+
+                      '<img id=' +first_name+ ' src='+first_url+' class="rounded gen-box" onclick="select_star_' + round_name + '($(this))">'+
+                      '</div>'+
+                      '</td>'+
+                      '</tr>'+
+                      '<tr>'+
+                        '<td>'+
+                        first_name.split("'")[1] +
+                        '</td>'+
+                      '</tr>'+
+                    '</table>'+
+                  '</th>'+
+                  '<th>' +
+                  '<h1> VS </h1>' +
+                  '</th>'+
+                  '<th>'+
+                    '<table class="show-table" style="text-align:center;">'+
+                      '<tr>'+
+                        '<td>'+
+                      '<div class="gen-box">'+
+                      '<img id=' + second_name+ ' src='+second_url+' class="rounded gen-box" onclick="select_star_' + round_name + '($(this))">'+
+                      '</div>'+
+                      '</td>'+
+                      '</tr>'+
+                      '<tr>'+
+                        '<td>'+
+                          second_name.split("'")[1] +
+                        '<td>'+
+                      '</tr>'+
+                    '</table>'+
+                  '</th>'+
+                '</tr>'
+        $("#competition-body").append(temp_html);
+    }
+    </script>
+
+  </head>
+
+  <body>
+    {{ gen }}
+      <div class="wrapper">
+            <center>
+              <div class="page-title display-3">당신의 원픽은?</div>
+              <table id="competition">
+                <tbody id="competition-body">
+
+                <tr>
+                  <th>  
+                    <div class="gen-box"> 
+                    <a href="worldcup.html?gen=4" id="gen-4th">
+                    <img src=https://image.genie.co.kr/Y/IMAGE/IMG_ARTIST/080/679/336/80679336_1583142561793_5_200x200.JPG class="rounded gen-box" id="gen-4th"></a>
+                    </div>
+                  </th>
+                  <th>
+                  <h1>VS</h1>  
+                  </th>
+                  <th>  
+                    <div class="gen-box"> 
+                    <a href="worldcup.html?gen=4" id="gen-4th">
+                    <img src=https://image.genie.co.kr/Y/IMAGE/IMG_ARTIST/080/679/336/80679336_1583142561793_5_200x200.JPG class="rounded gen-box" id="gen-4th"></a>
+                    </div>
+                  </th>
+                </tr>
+              </tbody>
+              </table>
+            </center>
+      </div>
+  </body>
+</html>
+

@@ -1,0 +1,75 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%
+}
+div.wrapper {
+    /* background-image: url("https://p0.pikrepo.com/preview/304/227/businessman-strategy-prize-career-development-promotion.jpg"); */
+    /* background-image:  */
+    background-size: cover;
+}
+.wrapper {
+    position: relative;
+    z-index:1;
+    width: 100%;
+    height: 100%;
+    align-items: center
+
+}
+.wrapper:after {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/0/05/BTS_at_the_31st_Golden_Disk_Awards.jpg");
+    background-size: cover;
+    top:0;
+    left:0;
+    position:absolute;
+    background-size: 100%;
+    opacity: 0.5!important;
+    filter:alpha(opacity=50);
+    z-index: -1;
+    content:"";
+    width:100%;
+    height:100%;            
+}
+
+.gen-box{
+    width: 300px;
+    height: 300px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline-block;
+    text-align:center;    
+}
+
+#gen-1st{
+    background: url( "https://upload.wikimedia.org/wikipedia/en/8/84/SES_Debut_Promo.jpg" ) no-repeat;
+    border: none;
+    cursor: pointer;
+    background-size: contain;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&display=swap');
+.page-title {
+    font-family: 'Nanum Myeongjo', serif;
+    /* text-align: center; */
+    color: black;
+    padding: 70px 0;
+    text-align: center;
+
+}
+
+#copetition {
+    align-content: center;
+}
+
+table {
+    text-align: center;
+    margin-left: 10px;
+    padding-left:10px;
+    /* margin: auto; */
+    /* width: 100%;
+    height: 100%; */
+}
+
+th, td {
+    height:600px;
+}
