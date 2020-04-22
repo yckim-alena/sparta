@@ -85,7 +85,7 @@
     function start_8(){
       $.ajax({
           type: "POST",
-          url: "/show",
+          url: "/candidate",
           data: {candidate:can_8},
           success: function(response) {
             let data = response['data']
@@ -104,6 +104,7 @@
           } 
         }) 
       }
+
       let can_4 = [];
       function select_star_8(thisid){
       if (can_4.length < 4){
@@ -230,7 +231,6 @@
   </head>
 
   <body>
-    {{ gen }}
       <div class="wrapper">
             <center>
               <div class="page-title display-3">당신의 원픽은?</div>

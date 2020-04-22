@@ -20,8 +20,6 @@ def gen():
 @app.route('/show', methods=['GET'])
 def show_list():
     gen = int(request.args.get('gen'))
-    print(gen)
-    print(type(gen))
     candidate = list(db.artist.find({'gen':gen},{'_id':False}))
     print(candidate)
     cand_sample = random.sample(candidate, 16)
@@ -33,17 +31,20 @@ def show_list():
     print(idol_show)
     return jsonify({'result':'success', 'msg':'Successfully selected generation', 'candidate_data':idol_show})
 
-@app.route('/show', methods=['POST'])
+@app.route('/candidate', methods=['POST'])
 def give_img_8():
+    # print('here!!')
     # print(request)
-    print('here!!')
-    can_8_receive = request.form['candidate']
-    idol_show = []
-    for i in range(len(can_8_receive)):
-        artist = can_8_receive[i]['artist']
-        data = db.artist_img.find_one({'artist':artist}, {'_id':False})
-        idol_show.append(data)
-    return jsonify({'result':'success', 'msg':'Started Quarter Final', 'data':idol_show})
+    recieve_data = request.get_json()
+    can_8_receive = recieve_data['candidate']
+    print(can_8_receive)
+    # idol_show = []
+    # for i in range(len(can_8_receive)):
+    #     artist = can_8_receive[i]['artist']
+    #     data = db.artist_img.find_one({'artist':artist}, {'_id':False})
+    #     idol_show.append(data)
+    # return jsonify({'result':'success', 'msg':'Started Quarter Final', 'data':idol_show})
+    return jsonify({'result':'success', 'msg':'Started Quarter Final'})
 
 
 # ## API 역할을 하는 부분
